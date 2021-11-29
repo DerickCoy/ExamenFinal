@@ -9,7 +9,7 @@ def curso_nuevo(request):
         formulario = CursosForm(request.POST)
         if formulario.is_valid():
             curso = Cursos.objects.create(nombrecurso=formulario.cleaned_data['nombrecurso'])
-            for estudiante_id in request.POST.getlist('estudiantes'):
+            for estudiante_id in request.POST.getlist('estudiante'):
              cursando = Cursando(estudiante_id=estudiante_id, curso_id = curso.id)
              cursando.save()
             messages.add_message(request, messages.SUCCESS, 'Curso Guardada Exitosamente')
