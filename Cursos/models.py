@@ -12,21 +12,21 @@ class Estudiantes(models.Model):
 
 class Cursos(models.Model):
     nombrecurso   = models.CharField(max_length=100)
-    estudinate    = models.ManyToManyField(Estudiantes, through='Actuacion')
+    estudinate    = models.ManyToManyField(Estudiantes, through='Cursando')
 
     def __str__(self):
         return self.nombrecurso
 
-class Cursnado (models.Model):
+class Cursando (models.Model):
     estudiante = models.ForeignKey(Estudiantes, on_delete=models.CASCADE)
     curso = models.ForeignKey(Cursos, on_delete=models.CASCADE)
 
-class CursnadoInLine(admin.TabularInline):
-    model = Cursnado
+class CursandoInLine(admin.TabularInline):
+    model = Cursando
     extra = 1
 
-class EstudaniteAdmin(admin.ModelAdmin):
-    inlines = (CursnadoInLine,)
+class EstudianteAdmin(admin.ModelAdmin):
+    inlines = (CursandoInLine,)
 
 class CursoAdmin (admin.ModelAdmin):
-    inlines = (CursnadoInLine,)
+    inlines = (CursandoInLine,)
